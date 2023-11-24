@@ -1,9 +1,13 @@
-const id: number = 3;
-console.log(id);
+import express from "express";
+import { config } from "dotenv";
+config();
 
-export const getMessage = () => {
-  const message: string = "Here is the message";
-  return message;
-};
+const app = express();
 
-console.log(getMessage());
+const port = process.env.PORT;
+
+app.listen(port, () => console.log(`Server is running on port ${port}`));
+
+app.get("/", (req, res) => {
+  res.status(200).send("Homepage");
+});
